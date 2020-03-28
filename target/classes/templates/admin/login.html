@@ -35,6 +35,12 @@
                  <input type="text" name="password" placeholder="密码">
                </div>
              </div>
+             <div class="field">
+               <div class="ui left icon input">
+                 <img th:src="@{/getVerifyCode}" id="kaptchaImage" onclick="change()" style="cursor: pointer">
+                 <input type="text" name="kaptcha" placeholder="验证码" autocomplete="off">
+               </div>
+             </div>
              <button class="ui fluid large teal submit button">登   录</button>
            </div>
 
@@ -51,6 +57,13 @@
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
 
 <script>
+
+  function change() {
+    $('#kaptchaImage').click(function () {
+      $(this).attr('src', '[[@{/getVerifyCode?}]]' + Math.floor(Math.random() * 100));
+    })
+  }
+
   $('.ui.form').form({
     fields : {
       username : {

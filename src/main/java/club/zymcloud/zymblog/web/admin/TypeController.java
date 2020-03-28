@@ -30,7 +30,7 @@ public class TypeController {
     public String types(Model model,
                         @RequestParam(value = "page",defaultValue = "1")Integer page,
                         @RequestParam(value = "size",defaultValue = "5")Integer size){
-        PageHelper.startPage(page,size);
+        PageHelper.startPage(page,6);
         List<Type> types = typeService.getTypes();
         PageInfo pageInfo = new PageInfo(types,5);
         model.addAttribute("pageInfo",pageInfo);

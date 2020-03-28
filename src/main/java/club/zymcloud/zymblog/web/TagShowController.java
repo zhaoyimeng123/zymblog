@@ -38,7 +38,7 @@ public class TagShowController {
     @Autowired
     private TypeService typeService;
 
-    //去到type页面
+    //去到tag页面
     @GetMapping("/tags/{id}")
     public String type(@PathVariable long id,
                        @RequestParam(name = "page",defaultValue = "1")Integer page,

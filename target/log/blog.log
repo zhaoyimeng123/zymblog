@@ -1,0 +1,215 @@
+2020-03-28 18:21:23.978  INFO 27412 --- [main] c.zymcloud.zymblog.ZymblogApplication    : Starting ZymblogApplication v0.0.1-SNAPSHOT on mengmeng with PID 27412 (F:\IntelliJ IDEA 2019.3.1\workspace\zymblog\target\zymblog-0.0.1-SNAPSHOT.jar started by ÃÉ¸ç¸ç in F:\IntelliJ IDEA 2019.3.1\workspace\zymblog\target)
+2020-03-28 18:21:23.981 DEBUG 27412 --- [main] c.zymcloud.zymblog.ZymblogApplication    : Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.4.RELEASE
+2020-03-28 18:21:23.983  INFO 27412 --- [main] c.zymcloud.zymblog.ZymblogApplication    : The following profiles are active: dev
+2020-03-28 18:21:25.934  INFO 27412 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2020-03-28 18:21:25.946  INFO 27412 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-28 18:21:25.947  INFO 27412 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-28 18:21:26.027  INFO 27412 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-28 18:21:26.028  INFO 27412 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1992 ms
+2020-03-28 18:21:26.937  INFO 27412 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-28 18:21:27.125  INFO 27412 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-03-28 18:21:27.531  INFO 27412 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2020-03-28 18:21:27.535  INFO 27412 --- [main] c.zymcloud.zymblog.ZymblogApplication    : Started ZymblogApplication in 4.296 seconds (JVM running for 5.021)
+2020-03-28 18:21:35.095  INFO 27412 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-28 18:21:35.095  INFO 27412 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-28 18:21:35.114  INFO 27412 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
+2020-03-28 18:21:35.167  INFO 27412 --- [http-nio-8081-exec-1] club.zymcloud.zymblog.aspect.LogAspect   : RequestLog : RequestLog{url='http://localhost:8081/', ip='0:0:0:0:0:0:0:1', classMethod='club.zymcloud.zymblog.web.IndexController.index', args=[1, 5, {}]}
+2020-03-28 18:21:35.226  INFO 27412 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-03-28 18:21:35.487  INFO 27412 --- [http-nio-8081-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-03-28 18:21:35.500 DEBUG 27412 --- [http-nio-8081-exec-1] c.z.zymblog.dao.TypeDao.getBlogCount     : ==>  Preparing: select * from type order by blog_count desc 
+2020-03-28 18:21:35.534 DEBUG 27412 --- [http-nio-8081-exec-1] c.z.zymblog.dao.TypeDao.getBlogCount     : ==> Parameters: 
+2020-03-28 18:21:35.563 DEBUG 27412 --- [http-nio-8081-exec-1] c.z.zymblog.dao.TypeDao.getBlogCount     : <==      Total: 5
+2020-03-28 18:21:35.576 ERROR 27412 --- [http-nio-8081-exec-1] c.z.z.h.ControllerExceptionHandler       : Request URL : http://localhost:8081/,Exception : {}
+
+java.lang.IndexOutOfBoundsException: Index: 5, Size: 5
+	at java.util.ArrayList.rangeCheck(Unknown Source)
+	at java.util.ArrayList.get(Unknown Source)
+	at club.zymcloud.zymblog.web.IndexController.index(IndexController.java:54)
+	at club.zymcloud.zymblog.web.IndexController$$FastClassBySpringCGLIB$$d77c98c7.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:56)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:47)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:55)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:95)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at club.zymcloud.zymblog.web.IndexController$$EnhancerBySpringCGLIB$$d04644c1.index(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+
+2020-03-28 18:21:36.431  INFO 27412 --- [http-nio-8081-exec-4] club.zymcloud.zymblog.aspect.LogAspect   : RequestLog : RequestLog{url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='club.zymcloud.zymblog.web.IndexController.newblogs', args=[{}]}
+2020-03-28 18:21:36.448 DEBUG 27412 --- [http-nio-8081-exec-4] c.zymcloud.zymblog.dao.BlogDao.getBlog   : ==>  Preparing: select * from blog order by update_time desc 
+2020-03-28 18:21:36.449 DEBUG 27412 --- [http-nio-8081-exec-4] c.zymcloud.zymblog.dao.BlogDao.getBlog   : ==> Parameters: 
+2020-03-28 18:21:36.462 DEBUG 27412 --- [http-nio-8081-exec-4] c.zymcloud.zymblog.dao.BlogDao.getBlog   : <==      Total: 7
+2020-03-28 18:21:36.464  INFO 27412 --- [http-nio-8081-exec-4] club.zymcloud.zymblog.aspect.LogAspect   : Result:_fragment::newblogList
+2020-03-28 18:21:46.659  INFO 27412 --- [http-nio-8081-exec-2] club.zymcloud.zymblog.aspect.LogAspect   : RequestLog : RequestLog{url='http://localhost:8081/blog/7', ip='0:0:0:0:0:0:0:1', classMethod='club.zymcloud.zymblog.web.IndexController.showBlog', args=[7, {}]}
+2020-03-28 18:21:46.664 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.BlogDao.getBlogById      : ==>  Preparing: select * from blog where id = ? 
+2020-03-28 18:21:46.665 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.BlogDao.getBlogById      : ==> Parameters: 7(Long)
+2020-03-28 18:21:46.671 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.BlogDao.getBlogById      : <==      Total: 1
+2020-03-28 18:21:46.683 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.TypeDao.getTypeById      : ==>  Preparing: select * from type where id = ? 
+2020-03-28 18:21:46.684 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.TypeDao.getTypeById      : ==> Parameters: 3(Long)
+2020-03-28 18:21:46.690 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.TypeDao.getTypeById      : <==      Total: 1
+2020-03-28 18:21:46.693 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.UserDao.getUserById      : ==>  Preparing: select * from user where id = ? 
+2020-03-28 18:21:46.693 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.UserDao.getUserById      : ==> Parameters: 1(Long)
+2020-03-28 18:21:46.696 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.UserDao.getUserById      : <==      Total: 1
+2020-03-28 18:21:46.698 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.z.dao.BlogTagDao.getTagIdByBlogId    : ==>  Preparing: select tag_id from blogtag where blog_id = ? 
+2020-03-28 18:21:46.698 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.z.dao.BlogTagDao.getTagIdByBlogId    : ==> Parameters: 7(Long)
+2020-03-28 18:21:46.700 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.z.dao.BlogTagDao.getTagIdByBlogId    : <==      Total: 1
+2020-03-28 18:21:46.710 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.TagDao.getTagById        : ==>  Preparing: select * from tag where id = ? 
+2020-03-28 18:21:46.711 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.TagDao.getTagById        : ==> Parameters: 14(Long)
+2020-03-28 18:21:46.715 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.TagDao.getTagById        : <==      Total: 1
+2020-03-28 18:21:46.720 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.BlogDao.updateViewCount  : ==>  Preparing: update blog set view_count=view_count+1 where id = ? 
+2020-03-28 18:21:46.722 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.BlogDao.updateViewCount  : ==> Parameters: 7(Long)
+2020-03-28 18:21:46.728 DEBUG 27412 --- [http-nio-8081-exec-2] c.z.zymblog.dao.BlogDao.updateViewCount  : <==    Updates: 1
+2020-03-28 18:21:46.731  INFO 27412 --- [http-nio-8081-exec-2] club.zymcloud.zymblog.aspect.LogAspect   : Result:blog
+2020-03-28 18:21:47.092  INFO 27412 --- [http-nio-8081-exec-4] club.zymcloud.zymblog.aspect.LogAspect   : RequestLog : RequestLog{url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='club.zymcloud.zymblog.web.IndexController.newblogs', args=[{}]}
+2020-03-28 18:21:47.093 DEBUG 27412 --- [http-nio-8081-exec-4] c.zymcloud.zymblog.dao.BlogDao.getBlog   : ==>  Preparing: select * from blog order by update_time desc 
+2020-03-28 18:21:47.095 DEBUG 27412 --- [http-nio-8081-exec-4] c.zymcloud.zymblog.dao.BlogDao.getBlog   : ==> Parameters: 
+2020-03-28 18:21:47.106 DEBUG 27412 --- [http-nio-8081-exec-4] c.zymcloud.zymblog.dao.BlogDao.getBlog   : <==      Total: 7
+2020-03-28 18:21:47.107  INFO 27412 --- [http-nio-8081-exec-4] club.zymcloud.zymblog.aspect.LogAspect   : Result:_fragment::newblogList
+2020-03-28 18:21:49.826  INFO 27412 --- [http-nio-8081-exec-6] club.zymcloud.zymblog.aspect.LogAspect   : RequestLog : RequestLog{url='http://localhost:8081/', ip='0:0:0:0:0:0:0:1', classMethod='club.zymcloud.zymblog.web.IndexController.index', args=[1, 5, {}]}
+2020-03-28 18:21:49.828 DEBUG 27412 --- [http-nio-8081-exec-6] c.z.zymblog.dao.TypeDao.getBlogCount     : ==>  Preparing: select * from type order by blog_count desc 
+2020-03-28 18:21:49.829 DEBUG 27412 --- [http-nio-8081-exec-6] c.z.zymblog.dao.TypeDao.getBlogCount     : ==> Parameters: 
+2020-03-28 18:21:49.834 DEBUG 27412 --- [http-nio-8081-exec-6] c.z.zymblog.dao.TypeDao.getBlogCount     : <==      Total: 5
+2020-03-28 18:21:49.837 ERROR 27412 --- [http-nio-8081-exec-6] c.z.z.h.ControllerExceptionHandler       : Request URL : http://localhost:8081/,Exception : {}
+
+java.lang.IndexOutOfBoundsException: Index: 5, Size: 5
+	at java.util.ArrayList.rangeCheck(Unknown Source)
+	at java.util.ArrayList.get(Unknown Source)
+	at club.zymcloud.zymblog.web.IndexController.index(IndexController.java:54)
+	at club.zymcloud.zymblog.web.IndexController$$FastClassBySpringCGLIB$$d77c98c7.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:56)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:47)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:55)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:95)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at club.zymcloud.zymblog.web.IndexController$$EnhancerBySpringCGLIB$$d04644c1.index(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+
+2020-03-28 18:21:50.138  INFO 27412 --- [http-nio-8081-exec-5] club.zymcloud.zymblog.aspect.LogAspect   : RequestLog : RequestLog{url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='club.zymcloud.zymblog.web.IndexController.newblogs', args=[{}]}
+2020-03-28 18:21:50.139 DEBUG 27412 --- [http-nio-8081-exec-5] c.zymcloud.zymblog.dao.BlogDao.getBlog   : ==>  Preparing: select * from blog order by update_time desc 
+2020-03-28 18:21:50.141 DEBUG 27412 --- [http-nio-8081-exec-5] c.zymcloud.zymblog.dao.BlogDao.getBlog   : ==> Parameters: 
+2020-03-28 18:21:50.153 DEBUG 27412 --- [http-nio-8081-exec-5] c.zymcloud.zymblog.dao.BlogDao.getBlog   : <==      Total: 7
+2020-03-28 18:21:50.154  INFO 27412 --- [http-nio-8081-exec-5] club.zymcloud.zymblog.aspect.LogAspect   : Result:_fragment::newblogList
+2020-03-28 18:22:24.432  INFO 27412 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-28 18:22:24.438  INFO 27412 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-03-28 18:22:24.467  INFO 27412 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

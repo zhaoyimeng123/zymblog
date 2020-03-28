@@ -30,7 +30,7 @@ public class TagController {
     public String types(Model model,
                         @RequestParam(value = "page",defaultValue = "1")Integer page,
                         @RequestParam(value = "size",defaultValue = "5")Integer size){
-        PageHelper.startPage(page,size);
+        PageHelper.startPage(page,6);
         List<Tag> tags = tagService.getTags();
         PageInfo pageInfo = new PageInfo(tags,5);
         model.addAttribute("pageInfo",pageInfo);

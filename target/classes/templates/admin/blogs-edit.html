@@ -63,7 +63,7 @@
               <i class="dropdown icon"></i>
               <div class="default text">分类</div>
               <div class="menu">
-                <div class="item aaa" th:each="type:${types}" th:data-value="${type.id}" th:data-typeid="${type.id}" th:text="${type.name}"></div>
+                <div class="item aaa" th:each="type:${types}" th:data-value="${type.id}" th:data-typeid="${type.id}" th:text="${type.name}" id="typeId"></div>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
               <input type="hidden" name="tagIds">
               <div class="default text">标签</div>
               <div class="menu">
-                <div class="item" th:each="tag:${tags}" th:data-tagid="${tag.id}" th:value="${tag.id}" th:text="${tag.name}"></div>
+                <div class="item" th:each="tag:${tags}" th:data-tagid="${tag.id}" th:value="${tag.id}" th:text="${tag.name}" id="tagId"></div>
               </div>
             </div>
           </div>
@@ -147,8 +147,13 @@
     var editor = editormd("md-content", {
       // width  : "100%",
       height : "640",
-      path : "/lib/editormd/lib/"
+      path : "/lib/editormd/lib/",
       //这里面还有其他的参数
+
+      /*上传图片相关配置如下*/
+      imageUpload : true,
+      imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+      imageUploadURL : "/admin/uploadImg"//注意你后端的上传图片服务地址
     });
   });
 </script>
@@ -175,28 +180,28 @@
         identifier: 'content',
         rules: [{
           type: 'empty',
-          prompt: '标题:请输入博客内容'
+          prompt: '请输入博客内容'
         }]
       },
       typeId : {
         identifier: 'typeId',
         rules: [{
           type: 'empty',
-          prompt: '标题:请输入博客分类'
+          prompt: '请输入博客分类'
         }]
       },
-      tgeId : {
+      tagId : {
         identifier: 'tagId',
         rules: [{
           type: 'empty',
-          prompt: '标题:请输入博客标签'
+          prompt: '请输入博客标签'
         }]
       },
       firstPicture : {
         identifier: 'firstPicture',
         rules: [{
           type: 'empty',
-          prompt: '标题:请输入博客首图'
+          prompt: '请输入博客首图'
         }]
       }
     }

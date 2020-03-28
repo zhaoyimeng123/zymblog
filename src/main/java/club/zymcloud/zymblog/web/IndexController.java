@@ -65,12 +65,12 @@ public class IndexController {
         //拿到10条推荐的最新博客
         List<Blog> hotBlogs = new ArrayList<>();
         List<Blog> recommentBlog = blogService.getRecommentBlog();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             hotBlogs.add(recommentBlog.get(i));
         }
         model.addAttribute("hotBlogs",hotBlogs);
 
-        PageHelper.startPage(page,8);
+        PageHelper.startPage(page,6);
         List<Blog> blogs = blogService.getBlog();
         for (Blog blog : blogs) {
             blog.setUser(userService.getUserById(blog.getUserId()));

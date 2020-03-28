@@ -173,3 +173,24 @@
         width: 100% !important;
     }
 }
+
+
+.btn-upload {
+    position: relative;
+    display: inline-block;
+    height: 31px;
+    *display: inline;
+    overflow: hidden;
+    vertical-align: middle;
+    cursor: pointer
+}
+.input-file {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 30em;
+    opacity: 0;
+    filter: alpha(opacity=0)
+}

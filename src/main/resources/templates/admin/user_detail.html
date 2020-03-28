@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户信息</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="/css/me.css">
+</head>
+<body>
+<form class="ui form" enctype="multipart/form-data" method="post" th:action="@{/admin/updateUserInfo}">
+    <h4 class="ui dividing header">用户信息修改</h4>
+    <div class="field">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">头像:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <img id="head_picture" style="width:50px;height:50px;border-radius:50%" th:src="@{${user.avatar}}"/>
+                <span class="btn-upload form-group formControls" style="margin-top: 10px;">
+					<input type="file" id="head_picture_file" name="file" class="input-file">
+   					<a style="margin-left:10px;" class="btn btn-secondary radius">更换头像</a>
+   			 </span>
+            </div>
+        </div>
+        <input type="submit" th:value="提交" id="submit-btn">
+    </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<script>
+    //预览上传的头像
+    $("#head_picture_file").change(function (e) {
+        var reader = new FileReader();
+        file = e.target.files[0];
+        if (!/image\/\w+/.test(file.type)) {//判断文件的是不是图片
+            alert("上传的文件格式不对,请重新上传...");
+            return false;
+        }
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            $("#head_picture").attr("src", "" + this.result + "");
+        };
+    });
+
+
+</script>
+
+</body>
+</html>

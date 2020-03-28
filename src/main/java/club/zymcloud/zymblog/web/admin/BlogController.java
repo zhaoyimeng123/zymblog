@@ -10,18 +10,24 @@ import club.zymcloud.zymblog.pojo.User;
 import club.zymcloud.zymblog.service.BlogService;
 import club.zymcloud.zymblog.service.TagService;
 import club.zymcloud.zymblog.service.TypeService;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author
@@ -129,16 +135,14 @@ public class BlogController {
         model.addAttribute("blog",blogById);
         //在修改博客类型的时候,先将对应的类型的博客数量-1
         typeDao.updateSubBlogCount(blogById.getTypeId());
-        //通过blogId找到对应所有的tag
+        //通过blogId找到对应所有的tagId
         List<Long> tagIdByBlogId = blogTagDao.getTagIdByBlogId(id);
-        List<Tag> tags = new ArrayList<>();
-        //在修改博客标签的时候,将对应的标签的博客数量-1
-        List<Long> longs = blogTagDao.getTagIdByBlogId(blogById.getId());
-        for (Long aLong : longs) {
+        //在修改博客标签的时候,先将对应的标签的博客数量-1
+        for (Long aLong : tagIdByBlogId) {
             tagDao.updateSubBlogCount(aLong);
         }
-        blogById.setTagIds(tagIdByBlogId.toString());
-        blogById.setTags(tags);
+        //将blogtag表中blogId对应的所有tagId记录删除
+        blogTagDao.deleteTag(id);
         model.addAttribute("blog",blogById);
         //查询到所有分类返回给博客新增页
         model.addAttribute("types",typeService.getTypes());
@@ -148,22 +152,19 @@ public class BlogController {
     }
     //修改博客
     @PostMapping("blogs/edit")
-    public String blogEdit(Blog blog, HttpSession session, RedirectAttributes attributes){
+    public String blogEdit(Blog blog, RedirectAttributes attributes){
         blog.setUpdateTime(new Date());
-        System.out.println("blogid:"+blog.getId());
-        int i = blogService.updateBlog(blog);
         String tagIds = blog.getTagIds();
         String[] split = tagIds.split(",");
-        //通过博客id查询到所有原来的标签,将其删除
-        blogTagDao.deleteTag(blog.getId());
+        //增加blogtag表中blogId与之对应的tagId
         for (String s : split) {
-            Long tagId = Long.valueOf(s);
-            blogTagDao.save(tagId,blog.getId());
-            //将博客对应的标签的博客数+1
-            tagDao.updateAddBlogCount(tagId);
+            blogTagDao.save(Long.valueOf(s),blog.getId());
+            //对应tagId的博客数量+1
+            tagDao.updateAddBlogCount(Long.valueOf(s));
         }
         //将博客对应的类型的博客数+1
         typeDao.updateAddBlogCount(blog.getTypeId());
+        int i = blogService.updateBlog(blog);
         if (i>0){
             attributes.addFlashAttribute("message","修改博客成功");
         }else {
@@ -183,6 +184,42 @@ public class BlogController {
             attributes.addFlashAttribute("message","删除失败");
         }
         return "redirect:/admin/blogs";
+    }
+
+
+    @RequestMapping("/uploadImg")
+    @ResponseBody
+    public JSONObject editormdPic (@RequestParam(value = "editormd-image-file", required = true) MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+        String trueFileName = file.getOriginalFilename();
+
+        String suffix = trueFileName.substring(trueFileName.lastIndexOf("."));
+
+        String fileName = System.currentTimeMillis()+"_"+ UUID.randomUUID().toString().substring(0,4) +suffix;
+        System.out.println("filename:"+fileName);
+        String path = request.getContextPath()+"/img/upload";
+        System.out.println("path:"+path);
+
+        File targetFile = new File(path, fileName);
+        if(!targetFile.exists()){
+            targetFile.mkdirs();
+        }
+
+        //保存
+        try {
+            file.transferTo(targetFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        JSONObject res = new JSONObject();
+        res.put("url", request.getContextPath()+"/assets/msg/upload/"+fileName);
+        res.put("success", 1);
+        res.put("message", "upload success!");
+
+        return res;
+
     }
 
 
