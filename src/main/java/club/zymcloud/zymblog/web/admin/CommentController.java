@@ -1,0 +1,53 @@
+package club.zymcloud.zymblog.web.admin;
+
+import club.zymcloud.zymblog.pojo.Comment;
+import club.zymcloud.zymblog.pojo.User;
+import club.zymcloud.zymblog.service.BlogService;
+import club.zymcloud.zymblog.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpSession;
+
+/**
+ * @author
+ * @date 2020/3/27-8:25
+ */
+@Controller
+public class CommentController {
+
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private BlogService blogService;
+
+    @Value("${comment.avatar}")
+    private String avatar;
+
+    @GetMapping("/comments/{blogId}")
+    public String comment(@PathVariable Long blogId, Model model){
+
+        model.addAttribute("comments",commentService.getCommentsByBlogId(blogId));
+        return "blog::commentList";
+    }
+
+    @PostMapping("/comments")
+    public String post(Comment comment, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        Long blogId = comment.getBlogId();
+        comment.setBlog(blogService.getBlogById(blogId));
+        if (user != null){
+            comment.setAvatar(user.getAvatar());
+            comment.setAdminComment(true);
+        }else {
+            comment.setAvatar(avatar);
+        }
+        commentService.saveComment(comment);
+        return "redirect:/comments/"+blogId;
+    }
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.zymcloud.zymblog.dao.BlogTagDao">
+    <insert id="save">
+        insert into blogtag(tag_id,blog_id) values(#{tagId},#{blogId})
+    </insert>
+    <select id="getTagIdByBlogId" resultType="java.lang.Long">
+        select tag_id from blogtag where blog_id = #{id}
+    </select>
+    <select id="getBlogIdByTagId" resultType="java.lang.Long">
+        select blog_id from blogtag where tag_id = #{id}
+    </select>
+    <!--修改博客的标签-->
+    <update id="updateTagByBlog">
+        update blogtag set tag_id = #{tagId} where blog_id = #{blogId}
+    </update>
+
+    <delete id="deleteTag">
+        delete from blogtag where blog_id = #{blogId}
+    </delete>
+</mapper>

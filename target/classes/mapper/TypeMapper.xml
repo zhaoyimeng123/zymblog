@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.zymcloud.zymblog.dao.TypeDao">
+    <select id="getTypeById" resultType="club.zymcloud.zymblog.pojo.Type">
+        select * from type where id = #{id}
+    </select>
+    <select id="getTypeByName" resultType="club.zymcloud.zymblog.pojo.Type">
+        select * from type where name = #{name}
+    </select>
+    <select id="getTypes" resultType="club.zymcloud.zymblog.pojo.Type">
+        select * from type order by id desc
+    </select>
+
+    <insert id="saveType">
+        insert into type(name) values(#{name})
+    </insert>
+
+    <update id="updateType">
+        update type set name = #{name} where id = #{id}
+    </update>
+
+    <delete id="deleteType">
+        delete from type where id = #{id}
+    </delete>
+
+    <!--博客选中这个类型时,这个类型的博客数加1-->
+    <update id="updateAddBlogCount">
+        update type set blog_count = (blog_count+1) where id = #{id}
+    </update>
+    <!--博客修改类型时,这个类型的博客数减1-->
+    <update id="updateSubBlogCount">
+        update type set blog_count = (blog_count-1) where id = #{id}
+    </update>
+
+    <select id="getBlogCount" resultType="club.zymcloud.zymblog.pojo.Type">
+        select * from type order by blog_count desc
+    </select>
+</mapper>

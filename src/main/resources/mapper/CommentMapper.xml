@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.zymcloud.zymblog.dao.CommentDao">
+    <select id="getCommentsByBlogId" resultType="club.zymcloud.zymblog.pojo.Comment">
+        select * from comment where blog_id = #{blogId} and parent_id = -1
+    </select>
+    <select id="getCommentByParentId" resultType="club.zymcloud.zymblog.pojo.Comment">
+        select * from comment where parent_id = #{parentId}
+    </select>
+    <select id="getCommentById" resultType="club.zymcloud.zymblog.pojo.Comment">
+        select * from comment where id = #{id}
+    </select>
+
+    <insert id="saveComment">
+        insert into comment(nickname,admin_comment,avatar,email,content,create_time,parent_id,blog_id) values (#{nickname},#{adminComment},#{avatar},#{email},#{content},#{createTime},#{parentId},#{blogId})
+    </insert>
+</mapper>

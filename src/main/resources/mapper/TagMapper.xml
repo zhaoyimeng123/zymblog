@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.zymcloud.zymblog.dao.TagDao">
+    <select id="getTagById" resultType="club.zymcloud.zymblog.pojo.Tag">
+        select * from tag where id = #{id}
+    </select>
+    <select id="getTagByName" resultType="club.zymcloud.zymblog.pojo.Tag">
+        select * from tag where name = #{name}
+    </select>
+    <select id="getTags" resultType="club.zymcloud.zymblog.pojo.Tag">
+        select * from tag order by id desc
+    </select>
+
+    <insert id="saveTag">
+        insert into tag(name) values(#{name})
+    </insert>
+
+    <update id="updateTag">
+        update tag set name = #{name} where id = #{id}
+    </update>
+
+    <delete id="deleteTag">
+        delete from tag where id = #{id}
+    </delete>
+
+    <!--博客选中这个标签时,这个标签的博客数加1-->
+    <update id="updateAddBlogCount">
+        update tag set blog_count = (blog_count+1) where id = #{id}
+    </update>
+    <!--博客修改标签时,这个标签的博客数减1-->
+    <update id="updateSubBlogCount">
+        update tag set blog_count = (blog_count-1) where id = #{id}
+    </update>
+
+    <select id="getBlogCount" resultType="club.zymcloud.zymblog.pojo.Tag">
+        select * from tag order by blog_count desc
+    </select>
+</mapper>

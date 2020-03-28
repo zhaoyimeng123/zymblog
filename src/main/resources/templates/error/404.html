@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragment::head(~{::title})}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <link rel="stylesheet" href="/css/me.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+<!--导航-->
+<div th:replace="~{_fragment::navbar(0)}"></div>
+
+<br>
+<br>
+<br>
+<br>
+<div class="m-container-small m-padded-tb-massive">
+    <div class="ui error message">
+        <div class="ui container">
+            <h2>404</h2>
+            <p>对不起,你访问的资源不存在</p>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<!--footer部分-->
+<div th:replace="~{_fragment::footer}"></div>
+</body>
+</html>

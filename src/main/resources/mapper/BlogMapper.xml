@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.zymcloud.zymblog.dao.BlogDao">
+    <select id="getBlogById" resultType="club.zymcloud.zymblog.pojo.Blog">
+        select * from blog where id = #{id}
+    </select>
+    <select id="getBlogByUserId" resultType="club.zymcloud.zymblog.pojo.Blog">
+        select * from blog where user_id = #{userId}
+    </select>
+    <select id="getBlogByTypeId" resultType="club.zymcloud.zymblog.pojo.Blog">
+        select * from blog where type_id = #{typeId}
+    </select>
+    <select id="getBlog" resultType="club.zymcloud.zymblog.pojo.Blog">
+        select * from blog order by update_time desc
+    </select>
+    <!--根据条件查询博客,将查询条件封装到一个blog对象中-->
+    <select id="getBlogsByExample" resultType="club.zymcloud.zymblog.pojo.Blog">
+        select * from blog  
+        <where>
+            <if test="title != null and title != ''">
+                title like concat('%',#{title},'%')
+            </if>
+            <if test="typeId != null">
+                and type_id = #{typeId}
+            </if>
+            <if test="recommend == true">
+                and recommend = #{recommend}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+    <insert id="saveBlog">
+        insert into blog(title,description,content,first_picture,flag,view_count,appreciation,shareStatement,commentabled,publish,recommend,create_time,update_time,user_id,type_id)
+         values(#{title},#{description},#{content},#{firstPicture},#{flag},#{viewCount},#{appreciation},#{shareStatement},#{commentabled},#{publish},#{recommend},#{createTime},#{updateTime},#{userId},#{typeId})
+    </insert>
+
+    <update id="updateBlog">
+        update blog set title=#{title},description=#{description},content=#{content},first_picture=#{firstPicture},flag=#{flag},appreciation=#{appreciation},shareStatement=#{shareStatement},commentabled=#{commentabled},publish=#{publish},recommend=#{recommend},update_time=#{updateTime},type_id=#{typeId}
+          where id = #{id}
+    </update>
+    <update id="updateViewCount">
+        update blog set view_count=view_count+1
+          where id = #{id}
+    </update>
+
+    <delete id="deleteBlog">
+        delete from blog where id = #{id}
+    </delete>
+
+    <!--首页推荐的博客列表,按时间排序-->
+    <select id="getRecommentBlog" resultType="club.zymcloud.zymblog.pojo.Blog">
+        select * from blog where recommend = true order by update_time desc
+    </select>
+
+    <select id="getBlogsSearch" resultType="club.zymcloud.zymblog.pojo.Blog">
+        select * from blog
+        <where>
+            <if test="title != null and title != ''">
+                title like concat('%',#{query},'%')
+            </if>
+            <if test="content != null and content != ''">
+                or content like concat('%',#{query},'%')
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+    <select id="findGroupYear" resultType="java.lang.String">
+        SELECT DATE_FORMAT(b.update_time,'%Y') AS YEAR FROM blog b GROUP BY YEAR ORDER BY YEAR DESC;
+    </select>
+    <select id="findBlogsByYear" resultType="club.zymcloud.zymblog.pojo.Blog">
+        SELECT * FROM blog b WHERE DATE_FORMAT(b.`update_time`,'%Y') = #{year}
+    </select>
+    <select id="blogCount" resultType="int">
+        select count(1) from blog
+    </select>
+
+</mapper>
