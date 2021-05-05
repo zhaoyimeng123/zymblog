@@ -7,4 +7,7 @@
     <select id="getUserById" resultType="club.zymcloud.zymblog.pojo.User">
         select * from user where id = #{id}
     </select>
+    <update id="updateUserInfo">
+        update user set nickname = #{nickname},email = #{email},avatar = #{avatar},update_time = #{updateTime} where id = #{id}
+    </update>
 </mapper>

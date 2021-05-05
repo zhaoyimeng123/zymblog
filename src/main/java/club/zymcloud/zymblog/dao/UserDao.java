@@ -14,5 +14,6 @@ public interface UserDao {
 
     User checkUser(String username);
     User getUserById(Long id);
+    int updateUserInfo(User user);
 
 }

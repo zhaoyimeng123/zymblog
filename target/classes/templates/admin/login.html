@@ -60,7 +60,7 @@
 
   function change() {
     $('#kaptchaImage').click(function () {
-      $(this).attr('src', '[[@{/getVerifyCode?}]]' + Math.floor(Math.random() * 100));
+      $(this).attr('src', '[[@{/getCode?}]]' + Math.floor(Math.random() * 100));
     })
   }
 

@@ -11,4 +11,5 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     User checkUser(String username);
     User getUserById(Long id);
+    int updateUserInfo(User user);
 }

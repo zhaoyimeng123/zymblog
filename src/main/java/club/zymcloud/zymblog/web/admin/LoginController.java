@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -78,32 +79,43 @@ public class LoginController {
     }
 
     @PostMapping("/updateUserInfo")
-    @ResponseBody
-    public String updateUserInfo(@RequestParam(name = "file") MultipartFile file, Model model) {
+    public String updateUserInfo(@RequestParam(name = "file") MultipartFile file,
+                                 @RequestParam(name = "nickname")String nickname,
+                                 @RequestParam(name = "email")String email,
+                                 HttpSession session,
+                                 Model model) {
+        System.out.println(nickname);
+        System.out.println(email);
         System.out.println(file);
         System.out.println("文件的名字:" + file.getName()); //拿到文本框的name值
         System.out.println("文件的名字:" + file.getOriginalFilename());//拿到文件真正的名字
         // 文件保存
+        File avatar = new File(UUID.randomUUID().toString().substring(0,6)+"_"+file.getOriginalFilename());
         if (!file.isEmpty()) {
             try{
-                /*
-                 * 这段代码执行完毕之后，图片上传到了工程的根路径； 如果我们想把图片上传到
-                 * d:/files大家是否能实现呢？ 等等;
-                 *  1、文件路径； 2、文件名； 3、文件格式; 4、文件大小的限制;
-                 */
                 BufferedOutputStream out = new BufferedOutputStream(
-                        new FileOutputStream(new File(UUID.randomUUID().toString().substring(0,6)+"_"+file.getOriginalFilename())));
+                        new FileOutputStream(avatar));
                 System.out.println(out);
                 out.write(file.getBytes());
                 out.flush();
                 out.close();
-                return "success";
+
             }catch (Exception e){
                 e.printStackTrace();
-                return "失败";
+                model.addAttribute("message","头像修改失败");
+                return "admin/user_detail";
             }
         }
-        return "失败";
+        User user = (User) session.getAttribute("user");
+        user.setUpdateTime(new Date());
+        user.setNickname(nickname);
+        user.setEmail(email);
+        user.setAvatar(avatar.getName());
+        System.out.println("avatar.getName()"+avatar.getName());
+        userService.updateUserInfo(user);
+
+        model.addAttribute("message","修改成功");
+        return "admin/index";
     }
 
 
